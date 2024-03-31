@@ -71,16 +71,12 @@ $(document).ready(function () {
   // Function to fetch and display recipe data
   function getRecipeDetails() {
     $.get("recipes.json", function (data) {
-      data.forEach(function (recipe) {
-        var recipeHtml = `
+      var recipe = data[0]; 
+      var recipeHtml = `
                     <div class="row my-5">
                         <div class="col-lg-6">
                             <div class="rounded">
-                                <img src="${
-                                  recipe.image
-                                }" class="img-fluid rounded mx-auto d-block" alt="${
-          recipe.title
-        }" style="width: 60%; height: auto;">
+                                <img src="${recipe.image}" class="img-fluid rounded mx-auto d-block" alt="${recipe.title}" style="width: 60%; height: auto;">
                             </div>
                         </div>
                         <div class="col-lg-6 mt-3">
@@ -116,8 +112,7 @@ $(document).ready(function () {
                             </div>
                         </div>
                     `;
-        $("#recipeContainer").append(recipeHtml);
-      });
+      $("#recipeContainer").append(recipeHtml);
     });
   }
 
@@ -154,7 +149,7 @@ $(document).ready(function () {
         data.sort(() => Math.random() - 0.5);
         data.slice(0, 6).forEach(function (user) {
             var featuredUsersHtml = `
-                                     <div class="col-lg-6 col-xl-4">
+                                     <div class="col-lg-6 col-xl-4 mt-3">
                                         <div class="p-4 rounded bg-light">
                                             <div class="row align-items-center">
                                                 <div class="col-6">
@@ -180,4 +175,10 @@ $(document).ready(function () {
   getRecipeDetails();
   getFeaturedRecipes();
   getFeaturedUsers();
+  // Function to handle recipe click event
+  $(document).on("click", ".card-img", function () {
+    var recipeId = $(this).data("id");
+    // Redirect to recipe details page with recipeId as parameter
+    window.location.href = "recipe-details.html?id=" + recipeId;
+});
 });

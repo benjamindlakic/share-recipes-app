@@ -9,19 +9,28 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="text-center mb-4">Register</h2>
-                            <form action="" method="POST">
+                            <form id="register-form" method="post">
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Your Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <label for="first_name">Your Name</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" required>
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email">
                                 </div>
+                                <div class="mb-3">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password">Repeat password</label>
+                                    <input type="password" class="form-control" id="repeat-password" name="repeat-password">
+                                </div>
+                                
                                 <button type="submit" class="btn btn-primary btn-block">Register</button>
                             </form>
                         </div>
@@ -74,5 +83,8 @@
         </div>
         <!-- Copyright End -->
     </body>
+<script src="assets/js/block-ui.js"></script>
+<script src="assets/js/jquery.validate.min.js"></script>
+<script src="assets/js/form.js"></script>
 
 </html>
