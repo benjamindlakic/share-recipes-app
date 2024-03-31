@@ -42,9 +42,11 @@
                 </button>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
-                        <a href="#home" class="nav-item nav-link active">Home</a>
+                        <a href="#home" class="nav-item nav-link">Home</a>
+                        <a href="#feed" class="nav-item nav-link">Feed</a>
                         <a href="#upload-recipe" class="nav-item nav-link">Upload Recipe</a>
-                        <a href="explore.html" class="nav-item nav-link">Explore</a>
+                        <a href="#explore" class="nav-item nav-link">Explore</a>
+
                     </div>
                     <div class="d-flex m-3 me-0">
                         <button
@@ -53,13 +55,13 @@
                             <i class="fas fa-search text-primary"></i>
                         </button>
                         <div class="dropdown">
-                            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>
-
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Login</a></li>
+                                <li><a class="dropdown-item" href="#user-profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="#edit-profile">Settings</a></li>
+                                <li><a class="dropdown-item" href="#login">Login</a></li>
                             </ul>
                         </div>
                     </div>
@@ -69,29 +71,126 @@
     </div>
     <!-- Navbar End -->
 
-    <main id="spapp" role="main"> 
-        <section id="home" data-load="vtpl/feed.html"></section>
+    <!-- Modal Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center">
+                    <div class="input-group w-75 mx-auto d-flex">
+                        <input type="search" class="form-control p-3" placeholder="keywords"
+                            aria-describedby="search-icon-1">
+                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Search End -->
+
+    <main id="spapp" role="main">
+        <section id="home" data-load="home.html"></section>
+        <section id="feed" data-load="vtpl/feed.html"></section>
         <section id="upload-recipe" data-load="vtpl/upload-recipe.html"></section>
-        <section id="view_1"></section>
-      </main>
+        <section id="explore" data-load="vtpl/explore.html"></section>
+        <section id="login" data-load="vtpl/login.html"></section>
+        <section id="register" data-load="vtpl/register.html"></section>
+        <section id="user-profile" data-load="vtpl/user-profile.html"></section>
+        <section id="edit-profile" data-load="vtpl/edit-profile.html"></section>
+        <section id="search" data-load="vtpl/search.html"></section>
+        <section id="recipe-detail" data-load="vtpl/recipe-detail.html"></section>
+        <section id="404" data-load="vtpl/404.html"></section>
+
+
+    </main>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-<script src="assets/js/jquery.spapp.min.js"></script> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery.spapp.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
     var app = $.spapp({
-    defaultView  : "home",
-    templateDir  : "./vtpl/",
-  });   
+        defaultView: "home",
+        templateDir: "./vtpl/",
+        pageNotFound : "404"
+    });
 
-  app.route({
-    view : "upload-recipe",
-    load : "upload-recipe.html",
-    onCreate: function() {  },
-    onReady: function() {  }
-  });
-  
-  app.run();
+    app.route({
+        view: "upload-recipe",
+        load: "upload-recipe.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+    app.route({
+        view: "explore",
+        load: "explore.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+    app.route({
+        view: "login",
+        load: "login.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+    app.route({
+        view: "register",
+        load: "register.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+    app.route({
+        view: "user-profile",
+        load: "user-profile.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+    app.route({
+        view: "edit-profile",
+        load: "edit-profile.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+    app.route({
+        view: "feed",
+        load: "feed.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+    app.route({
+        view: "search",
+        load: "search.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+    app.route({
+        view: "recipe-detail",
+        load: "reciple-detail.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+    app.route({
+        view: "404",
+        load: "404.html",
+        onCreate: function () { },
+        onReady: function () { }
+    });
+
+
+
+    app.run();
 </script>
+
 </html>
