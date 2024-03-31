@@ -74,6 +74,7 @@
     color: var(--bs-white) !important;
 }
 
+
 /*** Topbar Start ***/
 .fixed-top {
     transition: 0.5s;
@@ -478,6 +479,36 @@
 }
 /*** Single Page End ***/
 
+.card {
+    width: 50%; 
+    margin: 0 auto; 
+    margin-top: 50px; 
+    margin-bottom: 50px; 
+    border: 1px solid #52a154; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 90%; /* Set a narrower width for smaller screens */
+    }
+}
+.vertical-divider {
+    border-left: 1px solid #ced4da;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.social-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Ensure the buttons span the full width of the card */
+    margin-top: 10px; /* Adjust as needed */
+}
+.liked {
+    color: green; /* Change this to the color you want */
+}
 
 /*** Footer Start ***/
 .footer .footer-item .btn-link {
@@ -495,19 +526,3 @@
 }
 /*** Footer End ***/
 
-.card {
-    width: 45%; 
-    margin: 0 auto; 
-    margin-top: 50px; 
-    margin-bottom: 50px; 
-    border: 1px solid #52a154; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
-    border-radius: 10px; 
-}
-
-.vertical-divider {
-    border-left: 1px solid #ced4da;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
