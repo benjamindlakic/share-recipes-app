@@ -19,10 +19,10 @@
                 <!-- Profile Edit Form -->
                 <div class="col-md-6">
                     <h2>Edit Profile</h2>
-                    <form>
+                    <form id="edit-profile-form" method="post">
                          <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <label for="first_name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name">
                         </div>
                         <div class="mb-3">
                             <label for="profile-picture" class="form-label">Profile Picture</label>
@@ -32,7 +32,7 @@
                             <label for="bio" class="form-label">Bio</label>
                             <textarea class="form-control" id="bio" name="bio" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="alert('Profile updated successfully.')">Save Changes</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
                     </form>
                 </div>
         
@@ -44,7 +44,7 @@
                 <!-- Change Password Form -->
                 <div class="col-md-5">
                     <h2>Change Password</h2>
-                    <form>
+                    <form id="change-password-form" method="post">
                         <div class="mb-3">
                             <label for="current-password" class="form-label">Current Password</label>
                             <input type="password" class="form-control" id="current-password" name="current-password">
@@ -104,5 +104,7 @@
         </div>
         <!-- Copyright End -->
     </body>
-
+    <script src="assets/js/block-ui.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/form.js"></script>
 </html>
