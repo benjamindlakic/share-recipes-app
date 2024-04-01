@@ -100,7 +100,7 @@ $("#edit-profile-form").validate({
     unblockUi("#edit-profile-form");
     // Redirect to the profile page or any other desired location
     // Example: window.location.href = "#profile";
-    // alert("Profile has been successfully updated");
+    alert("Profile has been successfully updated");
   },
 });
 $("#upload-recipe-form").validate({
@@ -168,6 +168,7 @@ $("#upload-recipe-form").validate({
     alert("Recipe has been successfully uploaded");
   },
 });
+
 $("#change-password-form").validate({
   rules: {
     current_password: {
@@ -193,7 +194,7 @@ $("#change-password-form").validate({
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
     },
-    confirm_password: {
+    confirm_new_password: {
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
       //equalTo: "The new password and confirm password fields should be the same",

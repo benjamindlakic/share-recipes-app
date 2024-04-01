@@ -36,7 +36,7 @@
 })(jQuery);
 
 $(document).ready(function () {
-      // Variable to store recipe data
+  // Variable to store recipe data
   var recipeData;
   var usersData;
 
@@ -45,6 +45,8 @@ $(document).ready(function () {
     $.get("recipes.json", function (data) {
       recipeData = data;
       displayRecipes(recipeData);
+      displayCreatedRecipes(recipeData);
+      displayLikedRecipes(recipeData);
     });
   }
   function getUsers() {
@@ -78,6 +80,46 @@ $(document).ready(function () {
     });
   }
 
+  function displayCreatedRecipes(data) {
+    data.forEach(function (recipe) {
+      var limitedDescription =
+        recipe.description.slice(0, 75) +
+        (recipe.description.length > 100 ? "..." : "");
+      var recipefeedHtml = `
+                  <div class="col-md-6 col-lg-4 col-xl-3 mt-3" >
+                    <div class="card" style="width: 80%; ">
+                        <img src="${recipe.image}" class="card-img-top" style="height: 200px" alt="${recipe.title}">
+                        <div class="card-body">
+                            <h5 class="card-title">${recipe.title}</h5>
+                            <p class="card-text">${limitedDescription}</p>
+                        </div>
+                    </div>
+                  </div>
+                    `;
+      $("#createdRecipesContainer").append(recipefeedHtml);
+    });
+  }
+
+  function displayLikedRecipes(data) {
+    data.forEach(function (recipe) {
+      var limitedDescription =
+        recipe.description.slice(0, 75) +
+        (recipe.description.length > 100 ? "..." : "");
+      var recipefeedHtml = `
+                <div class="col-md-6 col-lg-4 col-xl-3 mt-3" >
+                  <div class="card" style="width: 80%; ">
+                      <img src="${recipe.image}" class="card-img-top" style="height: 200px" alt="${recipe.title}">
+                      <div class="card-body">
+                          <h5 class="card-title">${recipe.title}</h5>
+                          <p class="card-text">${limitedDescription}</p>
+                      </div>
+                  </div>
+                </div>
+                    `;
+      $("#likedRecipesContainer").append(recipefeedHtml);
+    });
+  }
+
   // Event delegation for recipe cards
   $("#feedContainer").on("click", ".card", function () {
     var recipeId = $(this).data("id");
@@ -86,15 +128,19 @@ $(document).ready(function () {
   });
 
   // Function to display recipe details
-function getRecipeDetails(recipeId) {
-  var recipe = recipeData.find((recipe) => recipe.id == recipeId);
-  if (recipe) {
+  function getRecipeDetails(recipeId) {
+    var recipe = recipeData.find((recipe) => recipe.id == recipeId);
+    if (recipe) {
       $("#recipeContainer").empty();
       var recipeHtml = `
           <div class="row my-5">
               <div class="col-lg-6">
                   <div class="rounded">
-                      <img src="${recipe.image}" class="img-fluid rounded mx-auto d-block" alt="${recipe.title}" style="width: 60%; height: auto;">
+                      <img src="${
+                        recipe.image
+                      }" class="img-fluid rounded mx-auto d-block" alt="${
+        recipe.title
+      }" style="width: 60%; height: auto;">
                   </div>
               </div>
               <div class="col-lg-6 mt-3">
@@ -110,22 +156,22 @@ function getRecipeDetails(recipeId) {
                       <h5 class="fw-bold mb-3">Ingredients:</h5>
                       <ul class="list-group">
                           ${recipe.ingredients
-                              .map(
-                                  (ingredient) =>
-                                  `<li class="list-group-item">${ingredient}</li>`
-                              )
-                              .join("")}
+                            .map(
+                              (ingredient) =>
+                                `<li class="list-group-item">${ingredient}</li>`
+                            )
+                            .join("")}
                       </ul>
                   </div>
                   <div class="col-lg-6 mt-3">
                       <h5 class="fw-bold mb-3">Instructions:</h5>
                       <ol class="list-group">
                           ${recipe.instructions
-                              .map(
-                                  (instruction) =>
-                                  `<li class="list-group-item">${instruction}</li>`
-                              )
-                              .join("")}
+                            .map(
+                              (instruction) =>
+                                `<li class="list-group-item">${instruction}</li>`
+                            )
+                            .join("")}
                       </ol>
                   </div>
               </div>
@@ -134,23 +180,22 @@ function getRecipeDetails(recipeId) {
       $("#recipeContainer").append(recipeHtml);
 
       // Event delegation to handle Like button click
-      $("#recipeContainer").on("click", ".like-btn", function() {
-          var $likeBtn = $(this);
-          $likeBtn.toggleClass("liked");
-          if ($likeBtn.hasClass("liked")) {
-          $likeBtn.find('.like-text').text("Unlike");
+      $("#recipeContainer").on("click", ".like-btn", function () {
+        var $likeBtn = $(this);
+        $likeBtn.toggleClass("liked");
+        if ($likeBtn.hasClass("liked")) {
+          $likeBtn.find(".like-text").text("Unlike");
           $likeBtn.css("background-color", "green");
           $likeBtn.css("color", "white");
-
-          } else {
-          $likeBtn.find('.like-text').text("Like");
+        } else {
+          $likeBtn.find(".like-text").text("Like");
           $likeBtn.css("background-color", "white");
           $likeBtn.css("color", "black");
-          }
+        }
       });
+    }
   }
-}
-  
+
   function getFeaturedRecipes() {
     $.get("recipes.json", function (data) {
       data.sort(() => Math.random() - 0.5);
@@ -179,21 +224,25 @@ function getRecipeDetails(recipeId) {
     });
   }
 
-// Function to display recipe cards
-function displayUsers(data) {
-  data.sort(() => Math.random() - 0.5);
-  data.slice(0, 6).forEach(function (user) {
+  // Function to display recipe cards
+  function displayUsers(data) {
+    data.sort(() => Math.random() - 0.5);
+    data.slice(0, 6).forEach(function (user) {
       var featuredUsersHtml = `
         <div class="col-lg-6 col-xl-4 mt-3">
           <div class="p-4 rounded bg-light">
             <div class="row align-items-center">
               <div class="col-6">
-                <img src="${user.avatar}" class="img-fluid rounded-circle w-100" alt="">
+                <img src="${
+                  user.avatar
+                }" class="img-fluid rounded-circle w-100" alt="">
               </div>
               <div class="col-6">
                 <a href="#" class="h5">${user.username}</a>
                 <p class="mb-0">Followers: ${user.followers}</p>
-                <a class="btn border border-secondary rounded-pill px-3 text-primary follow-btn">${user.following ? 'Following' : 'Follow'}</a>
+                <a class="btn border border-secondary rounded-pill px-3 text-primary follow-btn">${
+                  user.following ? "Following" : "Follow"
+                }</a>
               </div>
             </div>
           </div>
@@ -201,21 +250,20 @@ function displayUsers(data) {
       `;
 
       $("#featuredUsersContainer").append(featuredUsersHtml);
-  });
+    });
 
-  // Event delegation to handle button clicks
-  $("#featuredUsersContainer").on("click", ".follow-btn", function() {
+    // Event delegation to handle button clicks
+    $("#featuredUsersContainer").on("click", ".follow-btn", function () {
       var $button = $(this);
       if ($button.text() === "Following") {
-          $button.text("Follow");
-          $button.css("background-color", "");
+        $button.text("Follow");
+        $button.css("background-color", "");
       } else {
-          $button.text("Following");
-          $button.css("background-color", "green");
+        $button.text("Following");
+        $button.css("background-color", "green");
       }
-  });
-}
-
+    });
+  }
 
   // Event delegation for featured recipe cards
   $("#featuredRecipeContainer").on("click", ".fruite-item", function () {
@@ -226,7 +274,7 @@ function displayUsers(data) {
 
   // function getFeaturedUsers() {
   //   $.get("users.json", function (data) {
-        
+
   //   });
   // }
   // Function to get user details
@@ -245,10 +293,9 @@ function displayUsers(data) {
       }
     });
   }
-  
+
   getRecipes();
   getUsers();
   getFeaturedRecipes();
   getUserDetails(2);
-
 });
