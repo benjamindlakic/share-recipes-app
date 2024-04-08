@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Upload Recipe</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active text-white">Upload Recipe</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+
+
+    <!-- Upload Recipe Form Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <form id="upload-recipe-form" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="recipeTitle" class="form-label">Recipe Title</label>
+                    <input type="text" class="form-control" id="recipeTitle" name="recipeTitle" required>
+                </div>
+                <div class="mb-3">
+                    <label for="recipeDescription" class="form-label">Recipe Description</label>
+                    <textarea class="form-control" id="recipeDescription" name="recipeDescription" rows="5"
+                        required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="recipeImage" class="form-label">Recipe Image</label>
+                    <input class="form-control" type="file" id="recipeImage" name="recipeImage" accept="image/*"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="ingredients" class="form-label">Ingredients</label>
+                    <textarea class="form-control" id="ingredients" name="ingredients" rows="5" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="instructions" class="form-label">Instructions</label>
+                    <textarea class="form-control" id="instructions" name="instructions" rows="10" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="prepTime" class="form-label">Preparation Time (in minutes)</label>
+                    <input type="number" class="form-control" id="prepTime" name="prepTime" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload Recipe</button>
+            </form>
+        </div>
+    </div>
+    <!-- Upload Recipe Form End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+        <div class="container py-5">
+            <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
+                <div class="row g-4">
+                    <div class="col-lg-3">
+                        <a href="#">
+                            <h1 class="text-primary mb-0">ShareRecipes</h1>
+                            <p class="text-secondary mb-0">Learn quicker.</p>
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="d-flex justify-content-end pt-3">
+                            <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
+                                    class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="text-light"><a href="#"><i
+                                class="fas fa-copyright text-light me-2"></i>ShareRecipes</a>, All right
+                        reserved.</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+</body>
+<script src="assets/js/block-ui.js"></script>
+<script src="assets/js/jquery.validate.min.js"></script>
+<script src="assets/js/form.js"></script>
+</html>

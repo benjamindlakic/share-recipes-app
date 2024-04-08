@@ -1,0 +1,212 @@
+
+[
+        {
+            "id": 1,
+            "name": "John Doe",
+            "username": "johndoe",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "I love cooking and sharing recipes!",
+            "email": "john.doe@example.com",
+            "password": "password123",
+            "followers": 100,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Jane Smith",
+            "username": "janesmith",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "Food enthusiast and recipe creator",
+            "email": "jane.smith@example.com",
+            "password": "password456",
+            "followers": 150,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+
+        },
+        {
+            "id": 3,
+            "name": "Michael Johnson",
+            "username": "michaeljohnson",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "Passionate about healthy cooking",
+            "email": "michael.johnson@example.com",
+            "password": "password789",
+            "followers": 200,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+
+        },
+        {
+            "id": 4,
+            "name": "Emily Davis",
+            "username": "emilydavis",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "Baking is my therapy",
+            "email": "emily.davis@example.com",
+            "password": "passwordabc",
+            "followers": 80,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+
+        },
+        {
+            "id": 5,
+            "name": "David Wilson",
+            "username": "davidwilson",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "Exploring flavors from around the world",
+            "email": "david.wilson@example.com",
+            "password": "passworddef",
+            "followers": 120,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+
+        },
+        {
+            "id": 6,
+            "name": "Sarah Anderson",
+            "username": "sarahanderson",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "Food lover and recipe collector",
+            "email": "sarah.anderson@example.com",
+            "password": "passwordghi",
+            "followers": 90,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+
+        },
+        {
+            "id": 7,
+            "name": "Daniel Martinez",
+            "username": "danielmartinez",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "Sharing my culinary adventures",
+            "email": "daniel.martinez@example.com",
+            "password": "passwordjkl",
+            "followers": 110,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+
+        },
+        {
+            "id": 8,
+            "name": "Olivia Taylor",
+            "username": "oliviataylor",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "Cooking is my passion",
+            "email": "olivia.taylor@example.com",
+            "password": "passwordmno",
+            "followers": 130,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+
+        },
+        {
+            "id": 9,
+            "name": "James Brown",
+            "username": "jamesbrown",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "Food and fitness go hand in hand",
+            "email": "james.brown@example.com",
+            "password": "passwordpqr",
+            "followers": 70,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+
+        },
+        {
+            "id": 10,
+            "name": "Sophia Thomas",
+            "username": "sophiathomas",
+            "avatar": "assets/img/avatar.jpg",
+            "bio": "Sharing family recipes",
+            "email": "sophia.thomas@example.com",
+            "password": "passwordstu",
+            "followers": 140,
+            "createdrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ],
+            "likedrecipes": [
+                {"id": 1},
+                {"id": 3},
+                {"id": 5}
+            ]
+
+        }
+    ]

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <body>
+
+        <!-- Single Page Header start -->
+        <div class="container-fluid page-header py-5">
+            <h1 class="text-center text-white display-6">Upload Recipe</h1>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active text-white">Upload Recipe</li>
+            </ol>
+        </div>
+        <!-- Single Page Header End -->
+
+        <!-- Profile section start -->
+        <div class="container">
+            <div class="row mt-5">
+                <!-- Profile Edit Form -->
+                <div class="col-md-6">
+                    <h2>Edit Profile</h2>
+                    <form id="edit-profile-form" method="post">
+                         <div class="mb-3">
+                            <label for="first_name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="profile-picture" class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" id="profile-picture" name="profile-picture">
+                        </div>
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control" id="bio" name="bio" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+        
+                <!-- Vertical Divider -->
+                <div class="col-md-1">
+                    <div class="vertical-divider"></div>
+                </div>
+        
+                <!-- Change Password Form -->
+                <div class="col-md-5">
+                    <h2>Change Password</h2>
+                    <form id="change-password-form" method="post">
+                        <div class="mb-3">
+                            <label for="current_password" class="form-label">Current Password</label>
+                            <input type="password" class="form-control" id="current_password" name="current_password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="new_password" class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="new_password" name="new_password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm_new_password" class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" id="confirm_new_password" name="confirm_new_password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Profile Section End -->
+      
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+            <div class="container py-5">
+                <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
+                    <div class="row g-4">
+                        <div class="col-lg-3">
+                            <a href="#">
+                                <h1 class="text-primary mb-0">ShareRecipes</h1>
+                                <p class="text-secondary mb-0">Learn quicker.</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="d-flex justify-content-end pt-3">
+                                <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright bg-dark py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>ShareRecipes</a>, All right reserved.</span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+    </body>
+    <script src="assets/js/block-ui.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/form.js"></script>
+</html>
