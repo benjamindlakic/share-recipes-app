@@ -17,38 +17,44 @@
     <!-- Upload Recipe Form Start -->
     <div class="container-fluid py-5">
         <div class="container">
-            <form id="upload-recipe-form" method="POST" enctype="multipart/form-data">
+            <form id="upload-recipe-form">
                 <div class="mb-3">
                     <label for="recipeTitle" class="form-label">Recipe Title</label>
-                    <input type="text" class="form-control" id="recipeTitle" name="recipeTitle" required>
+                    <input type="text" class="form-control" id="Title" name="Title" required>
                 </div>
                 <div class="mb-3">
                     <label for="recipeDescription" class="form-label">Recipe Description</label>
-                    <textarea class="form-control" id="recipeDescription" name="recipeDescription" rows="5"
+                    <textarea class="form-control" id="Description" name="Description" rows="5"
                         required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="recipeImage" class="form-label">Recipe Image</label>
-                    <input class="form-control" type="file" id="recipeImage" name="recipeImage" accept="image/*"
+                    <input class="form-control" type="text" id="ImageURL" name="ImageURL" 
                         required>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="ingredients" class="form-label">Ingredients</label>
-                    <textarea class="form-control" id="ingredients" name="ingredients" rows="5" required></textarea>
-                </div>
+                    <textarea class="form-control" id="Ingredients" name="Ingredients" rows="5" required></textarea>
+                </div> -->
                 <div class="mb-3">
                     <label for="instructions" class="form-label">Instructions</label>
-                    <textarea class="form-control" id="instructions" name="instructions" rows="10" required></textarea>
+                    <textarea class="form-control" id="PreparationSteps" name="PreparationSteps" rows="10" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="prepTime" class="form-label">Preparation Time (in minutes)</label>
-                    <input type="number" class="form-control" id="prepTime" name="prepTime" required>
+                    <input type="number" class="form-control" id="CookingTime" name="CookingTime" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Upload Recipe</button>
+                <div class="mb-3">
+                    <label for="UserID" class="form-label">User</label>
+                    <input type="number" class="form-control" id="UserID" name="UserID" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="added-recipe">Upload Recipe</button>
             </form>
         </div>
     </div>
     <!-- Upload Recipe Form End -->
+
+
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
@@ -99,4 +105,5 @@
 <script src="assets/js/block-ui.js"></script>
 <script src="assets/js/jquery.validate.min.js"></script>
 <script src="assets/js/form.js"></script>
+<!-- <script src="assets/js/add-recipe.js"></script> -->
 </html>

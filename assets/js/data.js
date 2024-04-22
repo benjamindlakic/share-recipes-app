@@ -2,7 +2,7 @@ var recipeData;
 var usersData;
 
 function getRecipes() {
-  $.get("recipes.json", function (data) {
+  $.get("http://localhost/share-recipes-app/backend/api/recipes", function (data) {
     recipeData = data;
     console.log(recipeData);
     displayRecipes(recipeData);
@@ -13,7 +13,7 @@ function getRecipes() {
 }
 
 function getUsers() {
-  $.get("users.json", function (data) {
+  $.get("http://localhost/share-recipes-app/backend/api/users", function (data) {
     usersData = data;
     displayUsers(usersData);
   });

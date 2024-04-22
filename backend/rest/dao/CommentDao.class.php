@@ -2,12 +2,12 @@
 
 require_once __DIR__ . '/BaseDao.class.php';
 
-class RecipeDao extends BaseDao  {
+class CommentDao extends BaseDao  {
    
     public function __construct() {
-        parent::__construct("Recipes");
+        parent::__construct("Comments");
     }
-    
+
 }
 
 ?>

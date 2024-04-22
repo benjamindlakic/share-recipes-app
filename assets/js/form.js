@@ -8,16 +8,16 @@ $("#register-form").validate({
       minlength: 5,
     },
     username: {
-        required: true,
-        minlength: 5,
-      },
+      required: true,
+      minlength: 5,
+    },
     password: {
       required: true,
       minlength: 5,
     },
     email: {
-        required: true,
-        email: true,
+      required: true,
+      email: true,
     },
     confirm_password: {
       //   equalTo: "#password",
@@ -34,14 +34,13 @@ $("#register-form").validate({
   },
   submitHandler: function (form, event) {
     event.preventDefault();
-    blockUi("#register-form"); 
+    blockUi("#register-form");
     let data = serializeForm(form);
     users.push(data);
     $("#register-form")[0].reset();
-    console.log(users); 
-    unblockUi("#register-form"); 
+    console.log(users);
+    unblockUi("#register-form");
     window.location.href = "#login";
-
   },
 });
 
@@ -103,6 +102,32 @@ $("#edit-profile-form").validate({
     alert("Profile has been successfully updated");
   },
 });
+
+function addRecipe(data1) {
+  $.ajax({
+    url: "http://localhost/share-recipes-app/backend/api/recipes",
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(data1),
+    success: function (response) {
+      console.log(response);
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Recipe has been successfully uploaded',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        window.location.href = "#feed";
+      });
+    },
+    error: function (error) {
+      console.log(error);
+      alert("Error occurred while uploading the recipe");
+    },
+  });
+}
+
 $("#upload-recipe-form").validate({
   rules: {
     title: {
@@ -159,15 +184,30 @@ $("#upload-recipe-form").validate({
   submitHandler: function (form, event) {
     event.preventDefault();
     blockUi("#upload-recipe-form");
-    let data = serializeForm(form);
-    // Perform the upload operation
-    // Example: $.ajax({ url: "/upload", type: "POST", data: data, processData: false, contentType: false, success: function(response) { console.log(response); }, error: function(error) { console.log(error); } });
-    console.log("Uploaded recipe:", data);
-    unblockUi("#upload-recipe-form");
-    // Redirect to the recipe page or any other desired location
-    alert("Recipe has been successfully uploaded");
+    serializeForm(form);
+    
+      var user = $('#UserID').val();
+      var title = $('#Title').val();
+      var description = $('#Description').val();
+      var instructions = $('#PreparationSteps').val();
+      var preptime = $('#CookingTime').val();
+      var image = $('#ImageURL').val();
+
+      var recipeData = {
+        UserID: user, 
+        Title: title, 
+        Description: description, 
+        PreparationSteps: instructions, 
+        CookingTime: preptime, 
+        ImageURL: image
+      };
+
+      addRecipe(recipeData);
+      unblockUi("#upload-recipe-form");
+
   },
 });
+
 
 $("#change-password-form").validate({
   rules: {
