@@ -6,9 +6,9 @@
       });
       if (user) {
         var userDetailsHtml = `
-              <img src="${user.avatar}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
-              <h2 class="mt-3">${user.name}</h2>
-              <p>Followers: ${user.followers}</p>
+              <img src="${user.ProfilePicture}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
+              <h2 class="mt-3">${user.Firstname} " " ${user.Lastname}</h2>
+              <p>Followers: ${user.Followers}</p>
         `;
         $("#userDetailsContainer").html(userDetailsHtml);
       }

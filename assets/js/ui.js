@@ -103,7 +103,7 @@ function displayRecipes(data) {
               <div class="row align-items-center">
                 <div class="col-6">
                   <img src="${
-                    user.avatar
+                    user.ProfilePicture
                   }" class="img-fluid rounded-circle w-100" alt="">
                 </div>
                 <div class="col-6">

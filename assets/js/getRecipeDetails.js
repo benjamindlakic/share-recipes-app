@@ -1,22 +1,22 @@
 
 function getRecipeDetails(recipeId) {
-    var recipe = recipeData.find((recipe) => recipe.id == recipeId);
+    var recipe = recipeData.find((recipe) => recipe.RecipeID == recipeId);
     if (recipe) {
       var recipeHtml = `
           <div class="row my-5">
               <div class="col-lg-6">
                   <div class="rounded">
                       <img src="${
-                        recipe.image
+                        recipe.ImageURL
                       }" class="img-fluid rounded mx-auto d-block" alt="${
-        recipe.title
+        recipe.Title
       }" style="width: 60%; height: auto;">
                   </div>
               </div>
               <div class="col-lg-6 mt-3">
                   <div>
-                      <h4 class="fw-bold mb-3">${recipe.title}</h4>
-                      <p class="mb-4">${recipe.description}</p>
+                      <h4 class="fw-bold mb-3">${recipe.Title}</h4>
+                      <p class="mb-4">${recipe.Description}</p>
                       <a class="btn btn-primary rounded-pill px-4 mb-2 like-btn" style="background-color:white; color: black;"><i class="fa fa-heart me-2"></i><span class="like-text">Like</span></a>
                   </div>
               </div>
@@ -25,7 +25,7 @@ function getRecipeDetails(recipeId) {
                   <div class="col-lg-6 my-3">
                       <h5 class="fw-bold mb-3">Ingredients:</h5>
                       <ul class="list-group">
-                          ${recipe.ingredients
+                          ${recipe.PreparationSteps // put ingredients here !!!!!!!
                             .map(
                               (ingredient) =>
                                 `<li class="list-group-item">${ingredient}</li>`
@@ -36,7 +36,7 @@ function getRecipeDetails(recipeId) {
                   <div class="col-lg-6 mt-3">
                       <h5 class="fw-bold mb-3">Instructions:</h5>
                       <ol class="list-group">
-                          ${recipe.instructions
+                          ${recipe.PreparationSteps
                             .map(
                               (instruction) =>
                                 `<li class="list-group-item">${instruction}</li>`
