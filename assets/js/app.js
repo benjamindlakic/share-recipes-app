@@ -1,5 +1,5 @@
 $(document).ready(function () {
     getRecipes();
     getUsers();
-    getRecipeDetails(1);
+    // getRecipeDetails(1);
   });
