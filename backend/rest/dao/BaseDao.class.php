@@ -46,14 +46,14 @@ class BaseDao{
         $query .= ")";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->execute($entity); // sql injection prevention
+        $stmt->execute($entity); 
         $entity['id'] = $this->connection->lastInsertId();
         return $entity;
     }
 
     public function delete($id) {
         $stmt = $this->connection->prepare("DELETE FROM " . $this->table_name . " WHERE id=:id");
-        $stmt->bindParam(':id', $id); // SQL injection prevention
+        $stmt->bindParam(':id', $id); 
         $stmt->execute();
     }
 
@@ -69,12 +69,4 @@ class BaseDao{
         $entity['id'] = $id;
         $stmt->execute($entity);
     }
-
-    protected function query_unique($query, $params) {
-        $results = $this->query($query, $params);
-        return reset($results);
-    }
-
-
-
 }

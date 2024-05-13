@@ -2,7 +2,6 @@
 
 
 Flight::route('GET /api/comments', function () {
-    
     Flight::json(Flight::commentService()->get_all());
 });
 
