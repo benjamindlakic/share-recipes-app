@@ -69,4 +69,9 @@ class BaseDao{
         $entity['id'] = $id;
         $stmt->execute($entity);
     }
+
+    public function get_user_by_email($email) {
+        $stmt = $this->query("SELECT * FROM " . $this->table_name . " WHERE Email = :Email", ["Email" => $email]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
