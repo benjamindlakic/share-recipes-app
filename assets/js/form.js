@@ -1,15 +1,45 @@
 var users = [];
 var idCounter = 1;
 
+function addUser(data2) {
+  $.ajax({
+    url: "http://localhost/share-recipes-app/backend/api/users",
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(data2),
+    success: function (response) {
+      console.log(response);
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'User has been successfully registered',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        window.location.href = "#login";
+      });
+    },
+    error: function (error) {
+      console.log(error);
+      alert("Error occurred while registering user");
+    },
+  });
+}
+
 $("#register-form").validate({
   rules: {
-    first_name: {
+    firstname: {
       required: true,
-      minlength: 5,
+      minlength: 2,
+    },
+    lastname: {
+      required: true,
+      minlength: 1,
     },
     username: {
       required: true,
       minlength: 5,
+      maxlength: 12,
     },
     password: {
       required: true,
@@ -19,28 +49,60 @@ $("#register-form").validate({
       required: true,
       email: true,
     },
-    confirm_password: {
-      //   equalTo: "#password",
+    repeat_password: {
+      equalTo: "#Password",
     },
   },
   messages: {
-    first_name: {
+    firstname: {
       required: "You have to fill it in!",
       minlength: "Too short buddy.!",
     },
-    confirm_password: {
-      //   equalTo: "The password and confirm password fields should be the same",
+    lastname: {
+      required: "You have to fill it in!",
+      minlength: "Too short buddy!",
+    },
+    username: {
+      required: "You have to fill it in!",
+      minlength: "Too short buddy!",
+      maxlength: "Too long buddy!",
+    },
+    password: {
+      required: "You have to fill it in!",
+      minlength: "Too short buddy!",
+    },
+    email: {
+      required: "You have to fill it in!",
+      email: "Invalid email address",
+    },
+    repeat_password: {
+      equalTo: "The password and confirm password fields should be the same",
     },
   },
   submitHandler: function (form, event) {
     event.preventDefault();
     blockUi("#register-form");
-    let data = serializeForm(form);
-    users.push(data);
-    $("#register-form")[0].reset();
-    console.log(users);
-    unblockUi("#register-form");
-    window.location.href = "#login";
+    serializeForm(form);
+    
+      var firstname = $('#Firstname').val();
+      var lastname = $('#Lastname').val();
+      var username = $('#Username').val();
+      var email = $('#Email').val();
+      var password = $('#Password').val();
+      var pic = $('#ProfilePicture').val();
+
+      var userData = {
+        Firstname: firstname, 
+        Lastname: lastname, 
+        Username: username, 
+        Email: email,
+        Password: password,
+        ProfilePicture: pic
+      };
+
+      addUser(userData);
+      console.log(userData);
+      unblockUi("#register-form");
   },
 });
 
@@ -130,11 +192,11 @@ function addRecipe(data1) {
 
 $("#upload-recipe-form").validate({
   rules: {
-    title: {
+    recipeTitle: {
       required: true,
       minlength: 5,
     },
-    description: {
+    recipeDescription: {
       required: true,
       minlength: 10,
     },
@@ -150,17 +212,20 @@ $("#upload-recipe-form").validate({
       required: true,
       accept: "image/*",
     },
-    preptime: {
+    prepTime: {
       required: true,
       minlength: 1,
     },
+    difficulty: {
+      required: true,
+    }
   },
   messages: {
-    title: {
+    recipeTitle: {
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
     },
-    description: {
+    recipeDescription: {
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
     },
@@ -176,10 +241,13 @@ $("#upload-recipe-form").validate({
       required: "You have to select an image!",
       accept: "Only image files are allowed!",
     },
-    preptime: {
+    prepTime: {
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
     },
+    difficulty: {
+      required: "Choose it",    
+    }
   },
   submitHandler: function (form, event) {
     event.preventDefault();
@@ -190,21 +258,24 @@ $("#upload-recipe-form").validate({
       var title = $('#Title').val();
       var description = $('#Description').val();
       var instructions = $('#PreparationSteps').val();
+      var ingredients = $('#Ingredients').val();
       var preptime = $('#CookingTime').val();
+      var difficulty = $('#DifficultyLevel').val();
       var image = $('#ImageURL').val();
 
       var recipeData = {
         UserID: user, 
         Title: title, 
         Description: description, 
-        PreparationSteps: instructions, 
+        PreparationSteps: instructions,
+        Ingredients: ingredients,
         CookingTime: preptime, 
+        DifficultyLevel: difficulty,
         ImageURL: image
       };
 
       addRecipe(recipeData);
       unblockUi("#upload-recipe-form");
-
   },
 });
 
