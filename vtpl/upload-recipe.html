@@ -32,10 +32,10 @@
                     <input class="form-control" type="text" id="ImageURL" name="ImageURL" 
                         required>
                 </div>
-                <!-- <div class="mb-3">
+                <div class="mb-3">
                     <label for="ingredients" class="form-label">Ingredients</label>
-                    <textarea class="form-control" id="Ingredients" name="Ingredients" rows="5" required></textarea>
-                </div> -->
+                    <textarea class="form-control" id="Ingredients" name="Ingredients" rows="10" required></textarea>
+                </div>
                 <div class="mb-3">
                     <label for="instructions" class="form-label">Instructions</label>
                     <textarea class="form-control" id="PreparationSteps" name="PreparationSteps" rows="10" required></textarea>
@@ -45,10 +45,18 @@
                     <input type="number" class="form-control" id="CookingTime" name="CookingTime" required>
                 </div>
                 <div class="mb-3">
+                    <label for="difficulty" class="form-label">Difficulty</label>
+                    <select class="form-control" id="DifficultyLevel" name="DifficultyLevel" required>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="UserID" class="form-label">User</label>
                     <input type="number" class="form-control" id="UserID" name="UserID" required>
                 </div>
-                <button type="submit" class="btn btn-primary" id="added-recipe">Upload Recipe</button>
+                <button type="submit" class="btn btn-primary">Upload Recipe</button>
             </form>
         </div>
     </div>
@@ -105,5 +113,4 @@
 <script src="assets/js/block-ui.js"></script>
 <script src="assets/js/jquery.validate.min.js"></script>
 <script src="assets/js/form.js"></script>
-<!-- <script src="assets/js/add-recipe.js"></script> -->
 </html>

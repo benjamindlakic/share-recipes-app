@@ -38,6 +38,11 @@ class BaseServices{
     {
         return $this->dao->delete($id);
     }
+
+    public function get_user_by_email($email)
+    {
+        return $this->dao->get_user_by_email($email);
+    }
 }
 
 ?>

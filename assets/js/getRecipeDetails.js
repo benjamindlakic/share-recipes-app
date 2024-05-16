@@ -1,6 +1,6 @@
 
 function getRecipeDetails(recipeId) {
-    var recipe = recipeData.find((recipe) => recipe.RecipeID == recipeId);
+    var recipe = recipeData.find((recipe) => recipe.id == recipeId);
     if (recipe) {
       var recipeHtml = `
           <div class="row my-5">
@@ -24,25 +24,11 @@ function getRecipeDetails(recipeId) {
               <div class="row mt-3">
                   <div class="col-lg-6 my-3">
                       <h5 class="fw-bold mb-3">Ingredients:</h5>
-                      <ul class="list-group">
-                          ${recipe.PreparationSteps // put ingredients here !!!!!!!
-                            .map(
-                              (ingredient) =>
-                                `<li class="list-group-item">${ingredient}</li>`
-                            )
-                            .join("")}
-                      </ul>
+                      <p>${recipe.Ingredients}</p>
                   </div>
                   <div class="col-lg-6 mt-3">
                       <h5 class="fw-bold mb-3">Instructions:</h5>
-                      <ol class="list-group">
-                          ${recipe.PreparationSteps
-                            .map(
-                              (instruction) =>
-                                `<li class="list-group-item">${instruction}</li>`
-                            )
-                            .join("")}
-                      </ol>
+                      <p>${recipe.PreparationSteps}</p>
                   </div>
               </div>
           </div>`;
@@ -53,7 +39,7 @@ function getRecipeDetails(recipeId) {
         var $likeBtn = $(this);
         $likeBtn.toggleClass("liked");
         if ($likeBtn.hasClass("liked")) {
-          $likeBtn.find(".like-text").text("Unlike");
+          $likeBtn.find(".like-text").text("Liked");
           $likeBtn.css("background-color", "green");
           $likeBtn.css("color", "white");
         } else {
