@@ -38,7 +38,7 @@ Flight::route('GET /api/users/@id', function ($id) {
 
     /**
      * @OA\Post(
-     *      path="/api/users",
+     *      path="/api/register",
      *      tags={"users"},
      *      summary="Add users data to the database",
      *      @OA\Response(
@@ -59,8 +59,9 @@ Flight::route('GET /api/users/@id', function ($id) {
      * )
      */
 
-Flight::route('POST /api/users', function () {
+Flight::route('POST /api/register', function () {
     $data = Flight::request()->data->getData();
+    $data['Password'] = password_hash($data['Password'], PASSWORD_DEFAULT);
     Flight::json(Flight::userService()->add($data));
 });
 

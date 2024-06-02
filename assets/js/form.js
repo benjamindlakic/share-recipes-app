@@ -3,7 +3,7 @@ var idCounter = 1;
 
 function addUser(data2) {
   $.ajax({
-    url: "http://localhost/share-recipes-app/backend/api/users",
+    url: "http://localhost/share-recipes-app/backend/api/register",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify(data2),
@@ -28,54 +28,56 @@ function addUser(data2) {
 
 $("#register-form").validate({
   rules: {
-    firstname: {
+    Firstname: {
       required: true,
       minlength: 2,
     },
-    lastname: {
+    Lastname: {
       required: true,
       minlength: 1,
     },
-    username: {
+    Username: {
       required: true,
       minlength: 5,
       maxlength: 12,
     },
-    password: {
+    Password: {
       required: true,
       minlength: 5,
     },
-    email: {
+    Email: {
       required: true,
       email: true,
     },
     repeat_password: {
+      required: true,
       equalTo: "#Password",
     },
   },
   messages: {
-    firstname: {
+    Firstname: {
       required: "You have to fill it in!",
       minlength: "Too short buddy.!",
     },
-    lastname: {
+    Lastname: {
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
     },
-    username: {
+    Username: {
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
       maxlength: "Too long buddy!",
     },
-    password: {
+    Password: {
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
     },
-    email: {
+    Email: {
       required: "You have to fill it in!",
       email: "Invalid email address",
     },
     repeat_password: {
+      required: "You have to fill it in!",
       equalTo: "The password and confirm password fields should be the same",
     },
   },
@@ -89,7 +91,7 @@ $("#register-form").validate({
       var username = $('#Username').val();
       var email = $('#Email').val();
       var password = $('#Password').val();
-      var pic = $('#ProfilePicture').val();
+
 
       var userData = {
         Firstname: firstname, 
@@ -97,7 +99,7 @@ $("#register-form").validate({
         Username: username, 
         Email: email,
         Password: password,
-        ProfilePicture: pic
+        ProfilePicture: "https://img.freepik.com/premium-vector/female-user-profile-avatar-is-woman-character-screen-saver-with-emotions_505620-617.jpg"
       };
 
       addUser(userData);
@@ -108,7 +110,7 @@ $("#register-form").validate({
 
 $("#login-form").validate({
   rules: {
-    username: {
+    Email: {
       required: true,
       minlength: 5,
     },
@@ -118,7 +120,7 @@ $("#login-form").validate({
     },
   },
   messages: {
-    username: {
+    Email: {
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
     },
@@ -126,10 +128,29 @@ $("#login-form").validate({
   submitHandler: function (form, event) {
     event.preventDefault();
     blockUi("#login-form");
-    let data = serializeForm(form);
-    console.log("Login data:", data);
-    unblockUi("#login-form");
-    window.location.href = "#home";
+
+    var email = $('#Email').val();
+    var password = $('#password').val();
+
+    $.ajax({
+      url: "http://localhost/share-recipes-app/backend/auth/login",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({ 
+        Email: email, 
+        Password: password,
+      }),
+      success: function (response) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userId', response.data.id);
+        unblockUi("#login-form");
+        window.location.href = "#feed";
+      },
+      error: function (error) {
+        unblockUi("#login-form");
+        alert("Invalid credentials");
+      }
+    });
   },
 });
 
@@ -169,6 +190,9 @@ function addRecipe(data1) {
   $.ajax({
     url: "http://localhost/share-recipes-app/backend/api/recipes",
     type: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
     contentType: "application/json",
     data: JSON.stringify(data1),
     success: function (response) {
@@ -253,8 +277,8 @@ $("#upload-recipe-form").validate({
     event.preventDefault();
     blockUi("#upload-recipe-form");
     serializeForm(form);
-    
-      var user = $('#UserID').val();
+
+      var userId = localStorage.getItem('userId');
       var title = $('#Title').val();
       var description = $('#Description').val();
       var instructions = $('#PreparationSteps').val();
@@ -264,7 +288,7 @@ $("#upload-recipe-form").validate({
       var image = $('#ImageURL').val();
 
       var recipeData = {
-        UserID: user, 
+        UserID: userId, 
         Title: title, 
         Description: description, 
         PreparationSteps: instructions,
@@ -324,49 +348,6 @@ $("#change-password-form").validate({
     alert("Password has been successfully changed");
   },
 });
-// function objectFormHandler(form, event) {
-//   // TODO check whether the form action is create a new user or update a existing user
-
-//   event.preventDefault();
-//   blockUi("#register-form");
-//   let data = serializeForm(form);
-
-//   data["id"] = idCounter;
-//   data[
-//     "action"
-//   ] = `<button onClick="editUserDetails(${idCounter})">Edit</button>`;
-//   idCounter += 1;
-//   users.push(data);
-
-//   if ($.fn.dataTable.isDataTable("#tutorials-table")) {
-//     $("#tutorials-table").DataTable().destroy();
-//   }
-//   initializeDatatable("#tutorials-table", users);
-
-//   $("#tutorial-form")[0].reset();
-
-//   unblockUi("#tutorial-form");
-// }
-
-// function apiFormHandler(form, event) {
-//   event.preventDefault();
-//   blockUi("#tutorial-form");
-//   let data = serializeForm(form);
-
-//   $.post(
-//     "http://localhost:8018/mobile-api/v1/api/sample",
-//     JSON.stringify(data)
-//   ).done(function (data) {
-//     $("#tutorial-form")[0].reset();
-//     $("#toast-description").text(data.message);
-//     $("#success-toast").toast("show");
-//   }).fail(function (xhr) {
-//     $("#toast-description").text(xhr.responseJSON.message);
-//     $("#success-toast").toast("show");
-//   }).always(function() {
-//     unblockUi("#tutorial-form");
-//   });
-// }
 
 blockUi = (element) => {
   $(element).block({
@@ -394,32 +375,3 @@ serializeForm = (form) => {
   return jsonResult;
 };
 
-// editUserDetails = (userId) => {
-//   var selectedUser = {};
-//   $.each(users, (idx, user) => {
-//     if (user.id === userId) {
-//       selectedUser = user;
-//       return false; // break;
-//     }
-//   });
-
-//   if (selectedUser !== undefined) {
-//     $("#id").val(selectedUser.id);
-//     $("#first_name").val(selectedUser.first_name);
-//     $("#email").val(selectedUser.email);
-//     $("#password").val(selectedUser.password);
-//   }
-// };
-
-// initializeDatatable = (tableId, data) => {
-//   new DataTable(tableId, {
-//     columns: [
-//       { data: "id" },
-//       { data: "action" },
-//       { data: "first_name" },
-//       { data: "email" },
-//       { data: "password" },
-//     ],
-//     data: data,
-//   });
-// };

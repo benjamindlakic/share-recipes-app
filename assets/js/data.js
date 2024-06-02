@@ -1,22 +1,37 @@
+var token = localStorage.getItem("token");
+if (token) {
+  var recipeData;
+  var usersData;
 
-var recipeData;
-var usersData;
-
-function getRecipes() {
-  $.get("http://localhost/share-recipes-app/backend/api/recipes", function (data) {
-    recipeData = data;
-    console.log(recipeData);
-    displayRecipes(recipeData);
-    displayFeaturedRecipes(recipeData);
-    displayCreatedRecipes(recipeData);
-    displayLikedRecipes(recipeData);
-  });
+  function getRecipes() {
+    $.ajax({
+      url: "http://localhost/share-recipes-app/backend/api/recipes",
+      type: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      success: function (data) {
+        recipeData = data;
+        localStorage.setItem("recipeData", JSON.stringify(recipeData));
+        displayRecipes(recipeData);
+        displayFeaturedRecipes(recipeData);
+        displayCreatedRecipes(recipeData);
+      },
+    });
+  }
+  function getUsers() {
+    $.ajax({
+      url: "http://localhost/share-recipes-app/backend/api/users",
+      type: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      success: function (data) {
+        usersData = data;
+        displayUsers(usersData);
+      },
+    });
+  }
+} else {
+  window.location.href = "#login";
 }
-
-function getUsers() {
-  $.get("http://localhost/share-recipes-app/backend/api/users", function (data) {
-    usersData = data;
-    displayUsers(usersData);
-  });
-}
-

@@ -1,5 +1,9 @@
-$(document).ready(function () {
+var token = localStorage.getItem("token");
+if (token) {
+  $(document).ready(function () {
     getRecipes();
     getUsers();
-    // getRecipeDetails(1);
   });
+} else {
+  window.location.href = "#login";
+}
