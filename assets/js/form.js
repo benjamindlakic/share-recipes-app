@@ -141,6 +141,11 @@ $("#login-form").validate({
         Password: password,
       }),
       success: function (response) {
+        if (response.error) {
+          alert(response.message);
+          unblockUi("#login-form");
+          return;
+        }
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.id);
         unblockUi("#login-form");
@@ -174,16 +179,35 @@ $("#edit-profile-form").validate({
   submitHandler: function (form, event) {
     event.preventDefault();
     blockUi("#edit-profile-form");
-    let data = serializeForm(form);
-    // Update the user's profile data
-    // You can use the user's ID to find and update the corresponding user in the 'users' array
-    // Example: users[userId] = data;
-    console.log("Updated profile data:", data);
-    unblockUi("#edit-profile-form");
-    // Redirect to the profile page or any other desired location
-    // Example: window.location.href = "#profile";
-    alert("Profile has been successfully updated");
-  },
+    serializeForm(form);
+    
+    var userId = localStorage.getItem('userId');
+    var firstname = $('#first_name').val();
+    var lastname = $('#last_name').val();
+    var username = $('#username').val();
+
+    $.ajax({
+      url: `http://localhost/share-recipes-app/backend/api/users/${userId}`,
+      type: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      data: JSON.stringify({
+        Firstname: firstname,
+        Lastname: lastname,
+        Username: username,
+      }),
+      contentType: 'application/json',
+      success: function(response) {
+        unblockUi("#edit-profile-form");
+        alert("Profile has been successfully updated");
+      },
+      error: function(xhr, status, error) {
+        unblockUi("#edit-profile-form");
+        alert("An error occurred while updating the profile");
+      }
+    });
+  }
 });
 
 function addRecipe(data1) {
@@ -310,10 +334,7 @@ $("#change-password-form").validate({
       required: true,
       minlength: 5,
     },
-    new_password: {
-      required: true,
-      minlength: 5,
-    },
+
     confirm_password: {
       required: true,
       minlength: 5,
@@ -322,10 +343,6 @@ $("#change-password-form").validate({
   },
   messages: {
     current_password: {
-      required: "You have to fill it in!",
-      minlength: "Too short buddy!",
-    },
-    new_password: {
       required: "You have to fill it in!",
       minlength: "Too short buddy!",
     },
@@ -338,14 +355,33 @@ $("#change-password-form").validate({
   submitHandler: function (form, event) {
     event.preventDefault();
     blockUi("#change-password-form");
-    let data = serializeForm(form);
-    // Update the user's password
-    // You can use the user's ID to find and update the corresponding user in the 'users' array
-    // Example: users[userId].password = data.new_password;
-    console.log("Changed password:", data);
-    unblockUi("#change-password-form");
-    // Redirect to the profile page or any other desired location
-    alert("Password has been successfully changed");
+    serializeForm(form);
+
+    var userId = localStorage.getItem('userId');
+    var current_password = $('#current_password').val();
+    var new_password = $('#new_password').val();
+    
+    $.ajax({
+      url: `http://localhost/share-recipes-app/backend/api/usersPassword/${userId}`,
+      type: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      data: JSON.stringify({
+        current_password: current_password,
+        new_password: new_password,
+
+      }),
+      contentType: 'application/json',
+      success: function(response) {
+        unblockUi("#change-password-form");
+        alert("Password has been successfully updated");
+      },
+      error: function(xhr, status, error) {
+        unblockUi("#change-password-form");
+        alert("An error occurred while updating password");
+      }
+    });
   },
 });
 

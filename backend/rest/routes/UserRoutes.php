@@ -95,6 +95,19 @@ Flight::route('PUT /api/users/@id', function ($id) {
     Flight::json(Flight::userService()->getById($id));
 });
 
+
+Flight::route('PUT /api/usersPassword/@id', function ($id) {
+    $data = Flight::request()->data->getData();
+    $user = Flight::userService()->getById1($id);
+    if(!password_verify($data['current_password'], $user['Password'])){
+        Flight::json(["message" => "Current password is incorrect"], 400);
+        return;
+    }
+    $data['new_password'] = password_hash($data['new_password'], PASSWORD_DEFAULT);
+    Flight::userService()->change_password($id, $data['new_password']);
+    Flight::json(Flight::userService()->getById($id));
+});
+
     /**
      * @OA\Delete(
      *      path="/api/users/{id}",

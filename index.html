@@ -36,7 +36,7 @@
     <div class="container-fluid fixed-top">
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                <a href="#home" class="navbar-brand">
+                <a href="#feed" class="navbar-brand">
                     <h1 class="text-primary display-6">ShareRecipes</h1>
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
@@ -175,8 +175,12 @@
     app.route({
         view: "feed",
         load: "feed.html",
-        onCreate: function () { },
-        onReady: function () { }
+        onCreate: function () { 
+            $(".navbar").show();
+        },
+        onReady: function () {
+            $(".navbar").show();
+         }
     });
 
     app.route({

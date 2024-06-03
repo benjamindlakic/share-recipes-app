@@ -26,7 +26,7 @@
         $user = Flight::authService()->get_user_by_email($payload['Email']);
         
         if (!$user || !password_verify($payload['Password'], $user['Password'])) {
-            Flight::json(['error' => true, 'message' => 'Invalid username or password']);
+            Flight::json(['error' => true, 'message' => 'Invalid username or password'], 401);
             return;
         }
 

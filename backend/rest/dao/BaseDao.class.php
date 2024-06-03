@@ -32,6 +32,12 @@ class BaseDao{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function getById1($id) {
+        $stmt = $this->query("SELECT * FROM " . $this->table_name . " WHERE id = :id", ["id" => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function add($entity) {
         $query = "INSERT INTO " . $this->table_name . " (" ;
         foreach ($entity as $column => $value) {
@@ -73,5 +79,12 @@ class BaseDao{
     public function get_user_by_email($email) {
         $stmt = $this->query("SELECT * FROM " . $this->table_name . " WHERE Email = :Email", ["Email" => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function change_password($id, $new_password) {
+        $stmt = $this->connection->prepare("UPDATE " . $this->table_name . " SET Password = :new_password WHERE id = :id");
+        $stmt->bindParam(':new_password', $new_password);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
     }
 }
