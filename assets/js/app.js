@@ -1,9 +1,10 @@
-var token = localStorage.getItem("token");
-if (token) {
-  $(document).ready(function () {
+var token = localStorage.getItem('token');
+if(token){
+$(document).ready(function () {
     getRecipes();
     getUsers();
+
   });
-} else {
-  window.location.href = "#login";
+}else{
+    window.location.href = '#login';
 }

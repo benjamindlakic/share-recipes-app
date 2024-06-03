@@ -1,19 +1,21 @@
-function getRecipeDetails(recipeId) {
-  $("#recipeContainer").ready(function () {
-    var data11 = localStorage.getItem("recipeData");
-    var recipe = JSON.parse(data11).find((recipe) => recipe.id == recipeId);
-    if (recipe) {
-      $.ajax({
-        url: "http://localhost/share-recipes-app/backend/api/users",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        success: function (userData) {
-          var user = userData.find(function (user) {
-            return user.id === recipe.UserID;
-          });
-          if (userData) {
-            var recipeHtml = `
+var token = localStorage.getItem("token");
+if (token) {
+  function getRecipeDetails(recipeId) {
+    $("#recipeContainer").ready(function () {
+      var data11 = localStorage.getItem("recipeData");
+      var recipe = JSON.parse(data11).find((recipe) => recipe.id == recipeId);
+      if (recipe) {
+        $.ajax({
+          url: "http://localhost/share-recipes-app/backend/api/users",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          success: function (userData) {
+            var user = userData.find(function (user) {
+              return user.id === recipe.UserID;
+            });
+            if (userData) {
+              var recipeHtml = `
               <div class="row my-5">
                   <div class="col-lg-6">
                       <div class="rounded">
@@ -40,10 +42,13 @@ function getRecipeDetails(recipeId) {
                   </div>
               </div>`;
 
-            $("#recipeContainer").html(recipeHtml);
-          }
-        }
-      });
-    }
-  });
+              $("#recipeContainer").html(recipeHtml);
+            }
+          },
+        });
+      }
+    });
+  }
+} else {
+  window.location.href = "#login";
 }

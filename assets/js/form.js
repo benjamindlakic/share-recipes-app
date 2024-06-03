@@ -89,7 +89,7 @@ $("#register-form").validate({
       var firstname = $('#Firstname').val();
       var lastname = $('#Lastname').val();
       var username = $('#Username').val();
-      var email = $('#Email').val();
+      var email = $('#email_address').val();
       var password = $('#Password').val();
 
 
@@ -105,6 +105,7 @@ $("#register-form").validate({
       addUser(userData);
       console.log(userData);
       unblockUi("#register-form");
+      form.reset();
   },
 });
 
@@ -156,6 +157,7 @@ $("#login-form").validate({
         alert("Invalid credentials");
       }
     });
+    form.reset();
   },
 });
 
@@ -207,6 +209,7 @@ $("#edit-profile-form").validate({
         alert("An error occurred while updating the profile");
       }
     });
+    form.reset();
   }
 });
 
@@ -229,6 +232,7 @@ function addRecipe(data1) {
         timer: 1500
       }).then(() => {
         window.location.href = "#feed";
+        location.reload();
       });
     },
     error: function (error) {
@@ -324,6 +328,7 @@ $("#upload-recipe-form").validate({
 
       addRecipe(recipeData);
       unblockUi("#upload-recipe-form");
+      form.reset(); 
   },
 });
 
