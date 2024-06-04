@@ -21,6 +21,10 @@ class BaseServices{
         return $this->dao->getById($id);
     }
 
+    public function getById1($id)
+    {
+        return $this->dao->getById1($id);
+    }
 
     public function add($entity)
     {
@@ -42,6 +46,11 @@ class BaseServices{
     public function get_user_by_email($email)
     {
         return $this->dao->get_user_by_email($email);
+    }
+
+    public function change_password($id, $password)
+    {
+        return $this->dao->change_password($id, $password);
     }
 }
 

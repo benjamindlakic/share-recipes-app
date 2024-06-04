@@ -38,7 +38,7 @@ Flight::route('GET /api/users/@id', function ($id) {
 
     /**
      * @OA\Post(
-     *      path="/api/users",
+     *      path="/api/register",
      *      tags={"users"},
      *      summary="Add users data to the database",
      *      @OA\Response(
@@ -59,8 +59,9 @@ Flight::route('GET /api/users/@id', function ($id) {
      * )
      */
 
-Flight::route('POST /api/users', function () {
+Flight::route('POST /api/register', function () {
     $data = Flight::request()->data->getData();
+    $data['Password'] = password_hash($data['Password'], PASSWORD_DEFAULT);
     Flight::json(Flight::userService()->add($data));
 });
 
@@ -91,6 +92,19 @@ Flight::route('POST /api/users', function () {
 Flight::route('PUT /api/users/@id', function ($id) {
     $data = Flight::request()->data->getData();
     Flight::userService()->update($id, $data);
+    Flight::json(Flight::userService()->getById($id));
+});
+
+
+Flight::route('PUT /api/usersPassword/@id', function ($id) {
+    $data = Flight::request()->data->getData();
+    $user = Flight::userService()->getById1($id);
+    if(!password_verify($data['current_password'], $user['Password'])){
+        Flight::json(["message" => "Current password is incorrect"], 400);
+        return;
+    }
+    $data['new_password'] = password_hash($data['new_password'], PASSWORD_DEFAULT);
+    Flight::userService()->change_password($id, $data['new_password']);
     Flight::json(Flight::userService()->getById($id));
 });
 
